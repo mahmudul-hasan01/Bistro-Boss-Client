@@ -11,7 +11,7 @@ const Cart = () => {
     const totalPrice = cart.reduce((total, item) => total + item.price, 0)
 
     const handleDelete = async (id) => {
-        await axiosPublic.delete(`/carts/${id}`)
+        await axiosPublic.delete(`/cart/${id}`)
         refetch()
         toast.success('Deleted Successfully')
     }
