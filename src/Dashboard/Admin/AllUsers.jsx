@@ -21,6 +21,12 @@ const AllUsers = () => {
         refetch()
     }
 
+    const handleMakeAdmin =async (id) => {
+        await axiosSecure.patch(`/users/admin/${id}`)
+        toast.success('Updated Successfully')
+        refetch()
+    }
+
 
     return (
         <div>
@@ -52,7 +58,7 @@ const AllUsers = () => {
                                         user.role === 'admin' ?
                                        'Admin'
                                         :
-                                        <button className="btn btn-md text-white bg-orange-500" ><FaUsers className='text-xl' /></button>
+                                        <button className="btn btn-md text-white bg-orange-500" onClick={() => handleMakeAdmin(user?._id)} ><FaUsers className='text-xl' /></button>
                                     }
                                 </td>
                                 <td>
