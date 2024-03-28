@@ -9,6 +9,12 @@ const Cart = () => {
     const axiosPublic = useAxiosPublic()
 
     const totalPrice = cart.reduce((total, item) => total + item.price, 0)
+
+    const handleDelete = async (id) => {
+        await axiosPublic.delete(`/carts/${id}`)
+        refetch()
+        toast.success('Deleted Successfully')
+    }
     
 
     return (
@@ -57,7 +63,7 @@ const Cart = () => {
                                 </td>
                                 <td className="font-bold">$ {item?.price}</td>
                                 <th>
-                                    <button><MdDeleteForever className='text-3xl hover:text-red-600' /></button>
+                                    <button onClick={() => handleDelete(item?._id)}><MdDeleteForever className='text-3xl hover:text-red-600' /></button>
                                 </th>
                             </tr>)
                         }
