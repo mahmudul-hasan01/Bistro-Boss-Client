@@ -27,7 +27,7 @@ const NavBar = () => {
                             {navLink}
                         </ul>
                     </div>
-                    <a className="btn btn-ghost text-xl">daisyUI</a>
+                    <a className="btn btn-ghost text-xl">Bistro Boss</a>
                 </div>
                 <div className="navbar-center items-center hidden lg:flex">
                     <ul className="menu text-[16px] gap-5 menu-horizontal px-1">
