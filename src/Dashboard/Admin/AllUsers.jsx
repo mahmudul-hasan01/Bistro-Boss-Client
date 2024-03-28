@@ -15,6 +15,12 @@ const AllUsers = () => {
         }
     })
 
+    const handleDelete = async (id) => {
+        await axiosSecure.delete(`/users/${id}`)
+        toast.success('Deleted Successfully')
+        refetch()
+    }
+
 
     return (
         <div>
@@ -50,7 +56,7 @@ const AllUsers = () => {
                                     }
                                 </td>
                                 <td>
-                                    <button className="btn btn-md text-white bg-red-500"><MdDeleteForever className="text-xl"/></button>
+                                    <button className="btn btn-md text-white bg-red-500" onClick={() => handleDelete(user?._id)}><MdDeleteForever className="text-xl"/></button>
                                 </td>
                             </tr>)
                         }
