@@ -1,15 +1,18 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { navLink } from "./NavLink";
 import useAuth from "../../Hooks/useAuth";
 import toast from "react-hot-toast";
+import { FaShoppingCart } from "react-icons/fa";
+// import useCart from "../../Hooks/useCart";
 
 const NavBar = () => {
 
     const { user, logOut } = useAuth()
+    // const { cart } = useCart()
 
     const HandlelogOut = () => {
         logOut()
-            .then(() => {toast.success('Logout Successfully')})
+            .then(() => { toast.success('Logout Successfully') })
     }
 
     return (
@@ -30,25 +33,31 @@ const NavBar = () => {
                     <ul className="menu text-[16px] gap-5 menu-horizontal px-1">
                         {navLink}
                     </ul>
+                    {/* <Link to='/dashboard/cart'>
+                        <button className="btn btn-sm ml-3">
+                            <FaShoppingCart className='text-xl' />
+                            <div className="badge badge-secondary">+{cart?.length}</div>
+                        </button>
+                    </Link> */}
                 </div>
                 <div className="navbar-end mr-6 text-[16px]">
-                {
-                    user?.email ?
-                        <button className='btn btn-outline text-white border-white uppercase' onClick={HandlelogOut}>LogOut</button>
-                        :
-                        <NavLink
-                            to="/login"
-                            className={({ isActive, isPending, isTransitioning }) =>
-                                [
-                                    isPending ? "pending" : "",
-                                    isActive ? "text-yellow-500 underline" : "",
-                                    isTransitioning ? "transitioning" : "",
-                                ].join(" ")
-                            }
-                        >
-                            Login
-                        </NavLink>
-                }
+                    {
+                        user?.email ?
+                            <button className='btn btn-outline text-white border-white uppercase' onClick={HandlelogOut}>LogOut</button>
+                            :
+                            <NavLink
+                                to="/login"
+                                className={({ isActive, isPending, isTransitioning }) =>
+                                    [
+                                        isPending ? "pending" : "",
+                                        isActive ? "text-yellow-500 underline" : "",
+                                        isTransitioning ? "transitioning" : "",
+                                    ].join(" ")
+                                }
+                            >
+                                Login
+                            </NavLink>
+                    }
                 </div>
             </div>
         </div>
