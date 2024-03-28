@@ -1,7 +1,17 @@
 import { NavLink } from "react-router-dom";
 import { navLink } from "./NavLink";
+import useAuth from "../../Hooks/useAuth";
+import toast from "react-hot-toast";
 
 const NavBar = () => {
+
+    const { user, logOut } = useAuth()
+
+    const HandlelogOut = () => {
+        logOut()
+            .then(() => {toast.success('Logout Successfully')})
+    }
+
     return (
         <div>
             <div className="navbar fixed z-50 max-w-screen-xl text-white bg-black/50">
@@ -22,18 +32,23 @@ const NavBar = () => {
                     </ul>
                 </div>
                 <div className="navbar-end mr-6 text-[16px]">
-                    <NavLink
-                        to="/login"
-                        className={({ isActive, isPending, isTransitioning }) =>
-                            [
-                                isPending ? "pending" : "",
-                                isActive ? "text-yellow-500 " : "",
-                                isTransitioning ? "transitioning" : "",
-                            ].join(" ")
-                        }
-                    >
-                        Login
-                    </NavLink>
+                {
+                    user?.email ?
+                        <button className='btn btn-outline text-white border-white uppercase' onClick={HandlelogOut}>LogOut</button>
+                        :
+                        <NavLink
+                            to="/login"
+                            className={({ isActive, isPending, isTransitioning }) =>
+                                [
+                                    isPending ? "pending" : "",
+                                    isActive ? "text-yellow-500 underline" : "",
+                                    isTransitioning ? "transitioning" : "",
+                                ].join(" ")
+                            }
+                        >
+                            Login
+                        </NavLink>
+                }
                 </div>
             </div>
         </div>

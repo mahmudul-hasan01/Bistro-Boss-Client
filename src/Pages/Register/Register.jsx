@@ -16,8 +16,9 @@ const Register = () => {
     const onSubmit = async (data) => {
 
         signUp(data?.email, data?.password)
-            .then((data) => {
-                console.log(data);
+            .then(() => {
+                toast.success('Register Successfully')
+                navigate('/')
             })
 
 

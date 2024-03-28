@@ -2,6 +2,7 @@ import { Helmet } from "react-helmet-async";
 import useAuth from "../../Hooks/useAuth";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import image from '../../assets/loginImage/login@4x.png'
+import toast from "react-hot-toast";
 
 const Login = () => {
 
@@ -11,16 +12,17 @@ const Login = () => {
     
     const from = location?.state?.from?.pathname || '/'
 
+
     const handleSubmit = (e) => {
         e.preventDefault()
         const form = e.target
         const email = form.email.value
         const password = form.password.value
-        console.log(email,password);
-        // login(email,password)
-        // .then( () => {
-        //     navigate(from,{replace:true})
-        // })
+        login(email,password)
+        .then( () => {
+            toast.success('Register Successfully')
+            navigate(from,{replace:true})
+        })
 
     }
 
