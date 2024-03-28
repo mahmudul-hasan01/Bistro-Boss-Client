@@ -3,12 +3,12 @@ import { navLink } from "./NavLink";
 import useAuth from "../../Hooks/useAuth";
 import toast from "react-hot-toast";
 import { FaShoppingCart } from "react-icons/fa";
-// import useCart from "../../Hooks/useCart";
+import useCart from "../../Hooks/useCart";
 
 const NavBar = () => {
 
     const { user, logOut } = useAuth()
-    // const { cart } = useCart()
+    const { cart } = useCart()
 
     const HandlelogOut = () => {
         logOut()
@@ -33,12 +33,12 @@ const NavBar = () => {
                     <ul className="menu text-[16px] gap-5 menu-horizontal px-1">
                         {navLink}
                     </ul>
-                    {/* <Link to='/dashboard/cart'>
+                    <Link to='/dashboard/cart'>
                         <button className="btn btn-sm ml-3">
                             <FaShoppingCart className='text-xl' />
                             <div className="badge badge-secondary">+{cart?.length}</div>
                         </button>
-                    </Link> */}
+                    </Link>
                 </div>
                 <div className="navbar-end mr-6 text-[16px]">
                     {
