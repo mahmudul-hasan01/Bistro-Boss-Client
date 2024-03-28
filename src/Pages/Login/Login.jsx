@@ -3,6 +3,7 @@ import useAuth from "../../Hooks/useAuth";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import image from '../../assets/loginImage/login@4x.png'
 import toast from "react-hot-toast";
+import GoogleLogin from "../../Components/SocialLogin/GoogleLogin";
 
 const Login = () => {
 
@@ -59,6 +60,7 @@ const Login = () => {
                     </form>
                     <div className="divider">OR</div>
                     <div className="p-8 pt-0 space-y-6">
+                        <GoogleLogin></GoogleLogin>
                         <p>Already have account? please <Link className="underline text-blue-600" to='/register'>Register</Link></p>
                     </div>
                     

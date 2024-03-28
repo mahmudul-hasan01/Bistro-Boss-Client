@@ -1,4 +1,5 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+import { FaShoppingCart } from "react-icons/fa";
 
 export const navLink = <>
     <NavLink
@@ -37,5 +38,11 @@ export const navLink = <>
     >
         Order Food
     </NavLink>
+    <Link to='/dashboard/cart'>
+                    <button className="btn btn-sm ml-3">
+                        <FaShoppingCart className='text-xl' />
+                        <div className="badge badge-secondary">+</div>
+                    </button>
+                </Link>
 
 </>
