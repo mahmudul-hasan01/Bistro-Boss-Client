@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import { navLink } from "./NavLink";
 
 const NavBar = () => {
@@ -20,8 +21,19 @@ const NavBar = () => {
                         {navLink}
                     </ul>
                 </div>
-                <div className="navbar-end">
-                    <a className="btn">Button</a>
+                <div className="navbar-end mr-6 text-[16px]">
+                    <NavLink
+                        to="/login"
+                        className={({ isActive, isPending, isTransitioning }) =>
+                            [
+                                isPending ? "pending" : "",
+                                isActive ? "text-yellow-500 " : "",
+                                isTransitioning ? "transitioning" : "",
+                            ].join(" ")
+                        }
+                    >
+                        Login
+                    </NavLink>
                 </div>
             </div>
         </div>

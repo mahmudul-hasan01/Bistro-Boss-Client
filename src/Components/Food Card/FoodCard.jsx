@@ -4,7 +4,7 @@
 const FoodCard = ({ item }) => {
 
     const { name, price, image, recipe, _id } = item
-    
+
 
 
     return (
@@ -14,8 +14,8 @@ const FoodCard = ({ item }) => {
             <div className="card-body">
                 <h2 className="card-title">{name}</h2>
                 <p className="text-start">{recipe}</p>
-                <div className="card-actions">
-                    <button className="btn bg-black text-white">Add To Cart</button>
+                <div className="card-actions justify-center">
+                    <button className="btn btn-outline border-0 border-b-2 border-orange-400 text-orange-400 font-bold mt-3 ">Add To Cart</button>
                 </div>
             </div>
         </div>
