@@ -17,32 +17,27 @@ const Register = () => {
 
     const onSubmit = async (data) => {
 
-
-        signUp(data?.email, data?.password)
-        .then(() => {
-            // const userInfo = {
-            //     name: data?.name,
-            //     email: data?.email,
-            //     role: 'user',
-            //     status: 'Bronze Badge',
-            // }
-            // axiosPublic.post('/users', userInfo)
-            //     .then(res => {
-            //         if (res.data.insertedId) {
-            //             // toast.success('SignUp Successfully')
-                       
-            //         }
-            //     })
-        })
-
-
-
         const imageFile = { image: data.image[0] }
         const res = await axiosPublic.post(`https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_IMGBB_API_KEY}`, imageFile, {
             headers: {
                 'content-type': 'multipart/form-data'
             }
         })
+
+        if (res?.data?.success) {
+            signUp(data?.email, data?.password)
+                .then(() => {
+                    const userInfo = {
+                        name: data?.name,
+                        email: data?.email,
+                    }
+                    axiosPublic.post('/users', userInfo)
+                        .then(res => {
+                            console.log(res?.data);
+                        })
+                })
+        }
+
 
         if (res?.data?.success) {
             await updateUserProfile(data?.name, res.data.data.display_url)

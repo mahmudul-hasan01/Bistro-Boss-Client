@@ -10,8 +10,15 @@ const GoogleLogin = () => {
 
     const handleGoogle = () => {
       googleSignIn()
-      .then(() => {
-           navigate('/')
+      .then((result) => {
+        const userInfo ={
+            name: result?.user?.displayName,
+            email: result?.user?.email,
+        }
+        axiosPublic.post('/users', userInfo)
+        .then( () => {
+            navigate('/')
+        })
       })
     }
     return (
