@@ -47,7 +47,7 @@ const CheckoutForm = () => {
             // toast.success("Payment Done", paymentMethod?.id)
             console.log(paymentMethod);
         }
-        
+
         const { paymentIntent, error: confirmError } = await stripe.confirmCardPayment(clientSecret, {
             payment_method: {
                 card: card,
@@ -63,21 +63,21 @@ const CheckoutForm = () => {
             console.log(paymentIntent);
             if (paymentIntent.status === 'succeeded') {
                 toast.success(paymentIntent?.id)
-                // const payment = {
-                //     email: user?.email,
-                //     price: totalPrice,
-                //     transactionId: paymentIntent.id,
-                //     date: new Date(),
-                //     cartIds: cart.map(item => item._id),
-                //     menuItemIds: cart.map(item => item.menuId),
-                //     status: 'pending'
-                // }
-                // const res = await axiosSecure.post('/payment', payment)
-                // refetch()
-                // if (res?.data?.paymentResult.insertedId) {
-                //     toast.success('Payment Successfully')
-                //     navigate('/dashboard/paymentHistory')
-                // }
+                const payment = {
+                    email: user?.email,
+                    price: totalPrice,
+                    transactionId: paymentIntent.id,
+                    date: new Date(),
+                    cartIds: cart.map(item => item._id),
+                    menuItemIds: cart.map(item => item.menuId),
+                    status: 'pending'
+                }
+                const res = await axiosSecure.post('/payment', payment)
+                if (res?.data?.paymentResult.insertedId) {
+                    toast.success('Payment Successfully')
+                    navigate('/dashboard/paymentHistory')
+                    refetch()
+                }
             }
         }
     }
