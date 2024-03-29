@@ -12,7 +12,7 @@ const AddItems = () => {
     const axiosPublic = useAxiosPublic()
     const axiosSecure = useAxiosSecure()
 
-    const { register, handleSubmit, reset, formState: { errors }, } = useForm()
+    const { register, handleSubmit, reset, } = useForm()
 
     const onSubmit = async (data) => {
         
@@ -22,9 +22,21 @@ const AddItems = () => {
                 'content-type' : 'multipart/form-data'
             }
         })
-        
 
-        
+        if(res.data.success){
+            const menuItem = {
+                name: data?.name,
+                category: data?.category,
+                price: parseFloat(data?.price),
+                recipe: data?.recipe,
+                image: res?.data?.data?.display_url
+            }
+            const menuRes = await axiosSecure.post('/menu', menuItem)
+            if(menuRes.data.insertedId){
+                toast.success(`${data.neme} add successfully`)
+                reset()
+            }
+        }
     }
     return (
         <div>
