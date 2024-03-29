@@ -36,19 +36,23 @@ const NavBar = () => {
                         {navLink}
                     </ul>
                     {
-                        user && isAdmin ? <Link to='/dashboard/adminHome'>
-                        <button className="btn btn-sm ml-3">
-                            <FaShoppingCart className='text-xl' />
-                            <div className="badge badge-secondary">+{cart?.length}</div>
-                        </button>
-                    </Link>
-                    :
-                    <Link to='/dashboard/cart'>
-                        <button className="btn btn-sm ml-3">
-                            <FaShoppingCart className='text-xl' />
-                            <div className="badge badge-secondary">+{cart?.length}</div>
-                        </button>
-                    </Link>
+                        user && isAdmin &&
+                        <Link to='/dashboard/adminHome'>
+                            <button className="btn btn-sm ml-3">
+                                <FaShoppingCart className='text-xl' />
+                                <div className="badge badge-secondary">+{cart?.length}</div>
+                            </button>
+                        </Link>
+
+                    }
+                    {
+                        user && !isAdmin &&
+                        <Link to='/dashboard/cart'>
+                            <button className="btn btn-sm ml-3">
+                                <FaShoppingCart className='text-xl' />
+                                <div className="badge badge-secondary">+{cart?.length}</div>
+                            </button>
+                        </Link>
                     }
                 </div>
                 <div className="navbar-end mr-6 text-[16px]">

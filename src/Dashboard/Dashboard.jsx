@@ -1,7 +1,6 @@
 import { NavLink, Outlet } from "react-router-dom";
 import { FaBookBookmark, FaCartShopping, FaEnvelope, FaUsers, FaUtensils } from "react-icons/fa6";
 import { FaAddressCard, FaCalendar, FaHome, FaList, FaSearch } from "react-icons/fa";
-// import { MdOutlineRestaurantMenu } from "react-icons/md";
 import useCart from "../Hooks/useCart";
 import useAdmin from "../Hooks/useAdmin";
 

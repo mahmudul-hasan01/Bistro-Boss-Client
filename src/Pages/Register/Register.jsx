@@ -9,7 +9,7 @@ import GoogleLogin from "../../Components/SocialLogin/GoogleLogin";
 
 const Register = () => {
 
-    const image_hosting_api = `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_IMGBB_API_KEY}`
+    // const image_hosting_api = `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_IMGBB_API_KEY}`
     const axiosPublic = useAxiosPublic()
     const navigate = useNavigate()
     const { signUp, updateUserProfile } = useAuth()
@@ -17,14 +17,8 @@ const Register = () => {
 
     const onSubmit = async (data) => {
 
-        const imageFile = { image: data.image[0] }
-        const res = await axiosPublic.post(`https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_IMGBB_API_KEY}`, imageFile, {
-            headers: {
-                'content-type': 'multipart/form-data'
-            }
-        })
 
-        if (res?.data?.success) {
+        // if (res?.data?.success) {
             signUp(data?.email, data?.password)
                 .then(() => {
                     const userInfo = {
@@ -36,11 +30,18 @@ const Register = () => {
                             console.log(res?.data);
                         })
                 })
-        }
+        // }
 
+        const imageFile = { image: data.image[0] }
+        const res = await axiosPublic.post(`https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_IMGBB_API_KEY}`, imageFile, {
+            headers: {
+                'content-type': 'multipart/form-data'
+            }
+        })
+        console.log(res?.data);
 
         if (res?.data?.success) {
-            await updateUserProfile(data?.name, res.data.data.display_url)
+            await updateUserProfile(data?.name, res?.data?.data?.display_url)
             toast.success('Register Successfully')
             navigate('/')
         }
